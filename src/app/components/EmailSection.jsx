@@ -1,5 +1,5 @@
 "use client";
-import { Facebook, Github, Linkedin } from "lucide-react";
+import { Facebook, Github, Linkedin, Send } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -59,21 +59,21 @@ const EmailSection = () => {
         </p>
         <div className="socials flex flex-row gap-2">
           <Link
-            href="https://facebook.com"
+            href="https://www.facebook.com/surapat.wongsri.1"
             target="_blank"
             className="text-white hover:text-gray-400"
           >
             <Facebook size={24} />
           </Link>
           <Link
-            href="https://github.com"
+            href="https://github.com/SURAPATWONGSRI"
             target="_blank"
             className="text-white hover:text-gray-400"
           >
             <Github size={24} />
           </Link>
           <Link
-            href="https://linkedin.com"
+            href="www.linkedin.com/in/surapat-wongsri-181a91269"
             target="_blank"
             className="text-white hover:text-gray-400"
           >
@@ -172,10 +172,17 @@ const EmailSection = () => {
             </div>
             <button
               type="submit"
-              className="bg-cyan-500 hover:bg-cyan-600 text-white font-medium py-2.5 px-5 rounded-lg w-full"
+              className="bg-cyan-500 hover:bg-cyan-600 text-white font-medium py-2.5 px-5 rounded-lg w-full flex items-center justify-center gap-2"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Sending..." : "Send Message"}
+              {isSubmitting ? (
+                "Sending..."
+              ) : (
+                <>
+                  <Send size={18} />
+                  Send
+                </>
+              )}
             </button>
           </form>
         )}

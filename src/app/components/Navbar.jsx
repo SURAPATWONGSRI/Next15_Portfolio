@@ -21,6 +21,7 @@ const navLinks = [
 ];
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   // Close mobile menu when screen width is desktop-sized
   useEffect(() => {
@@ -30,51 +31,82 @@ const Navbar = () => {
       }
     };
 
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
     window.addEventListener("resize", handleResize);
+    window.addEventListener("scroll", handleScroll);
 
     // Call once on initial render to set correct state
     handleResize();
+    handleScroll();
 
     // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
+  // Handle smooth scrolling to sections
+  const handleLinkClick = (e, path) => {
+    e.preventDefault();
+
+    // Close mobile menu when a link is clicked
+    setNavbarOpen(false);
+
+    // Extract the section ID from the path
+    const sectionId = path.startsWith("#") ? path.substring(1) : path;
+    const section = document.getElementById(sectionId);
+
+    if (section) {
+      // Smooth scroll to the section
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-10 bg-[#121212] bg-opacity-90">
-      <div className="flex flex-wrap items-center justify-between mx-auto p-8">
-        <Link href="/" className="text-4xl md:text-4xl text-white font-medium">
-          Wakim.
-        </Link>
-        <div className="mobile-menu block md:hidden">
-          {!navbarOpen ? (
-            <button
-              onClick={() => setNavbarOpen(true)}
-              className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
-            >
-              <Menu className="h-5 w-5" />
-            </button>
-          ) : (
-            <button
-              onClick={() => setNavbarOpen(false)}
-              className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
-            >
-              <X className="h-5 w-5" />
-            </button>
-          )}
-        </div>
-        <div className="menu hidden md:block md:w-auto " id="navbar">
-          <ul className="flex p-4 md:p-0 md:flex-row md:space-x-8 mt-0">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all  ${
+        scrolled ? "py-4 bg-[#121212]" : "py-6 bg-[#121212] "
+      }`}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between">
+          <Link href="/" className="text-3xl md:text-4xl text-white font-bold">
+            WAKIM<span className="text-emerald-500">.</span>
+          </Link>
+
+          <div className="hidden md:flex md:items-center md:space-x-10">
             {navLinks.map((link, index) => (
-              <li key={index}>
-                <NavLink href={link.path} title={link.title} />
-              </li>
+              <NavLink
+                key={index}
+                href={link.path}
+                title={link.title}
+                onClick={(e) => handleLinkClick(e, link.path)}
+              />
             ))}
-          </ul>
+          </div>
+
+          <div className="md:hidden">
+            <button
+              onClick={() => setNavbarOpen(!navbarOpen)}
+              className="flex items-center p-2 rounded-full text-white hover:bg-gray-500/30 transition-colors"
+            >
+              {navbarOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </button>
+          </div>
         </div>
       </div>
-      {navbarOpen ? <MenuOverlay links={navLinks} /> : null}
+
+      {navbarOpen && (
+        <MenuOverlay links={navLinks} handleLinkClick={handleLinkClick} />
+      )}
     </nav>
   );
 };

@@ -8,7 +8,7 @@ const HeroSection = () => {
     <section>
       <div className="grid grid-cols-1 sm:grid-cols-12">
         <div className="col-span-7 place-self-center text-center sm:text-left">
-          <h1 className="font-kanit text-white mb-2 sm:mb-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold">
+          <h1 className=" text-white mb-2 sm:mb-4 text-6xl sm:text-6xl lg:text-6xl font-extrabold">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
               สวัสดีครับ, ผม{" "}
             </span>
@@ -33,11 +33,8 @@ const HeroSection = () => {
             </div>
           </h1>
           <p className="text-[#ADB7BE] sm:text-md lg:text-md mb-4 sm:mb-6 max-w-xl mx-auto sm:mx-0 leading-relaxed">
-            ปัจจุบันเป็นนักศึกษาจาก มหาวิทยาลัยเทคโนโลยีราชมงคลธัญบุรี
-            คณะวิทยาศาสตร์และเทคโนโลยี สาขาเทคโนโลยีคอมพิวเตอร์ ชั้นปีที่ 4
-            มีประสบการณ์ในการทำระบบจองคิวในช่วงฝึกงาน โดยใช้เทคโนโลยี (Vue.js,
-            Python, Node.js, MySQL, PHP, Next.js)
-            ผมชอบศึกษาความรู้นอกห้องเรียนอยู่ตลอดเพื่อให้ตัวเองตามทันเทคโนโลยีปัจจุบัน
+            81/313 หมู่บ้านพฤกษา116 รังสิต-นครนายก ตำบลคลองหลวง อำเภอคลองหลวง
+            ปทุมธานี 12120 , ประเทศไทย
           </p>
           <div>
             <button className="px-4 sm:px-6 py-2 sm:py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-r  from-emerald-400 to-cyan-400 hover:scale-110  transition-all hover:bg-slate-200 text-white">
