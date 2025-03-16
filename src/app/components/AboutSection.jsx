@@ -8,7 +8,9 @@ const TAB_DATA = [
     id: "skills",
     title: "Skills",
     content: (
-      <ul>
+      <ul className="grid grid-cols-2 gap-2 list-disc list-inside">
+        <li>HTML</li>
+        <li>CSS</li>
         <li>Node.js</li>
         <li>Vue.js</li>
         <li>Javascript</li>
@@ -48,8 +50,8 @@ const TAB_DATA = [
     content: (
       <ul>
         <li className="text-lg font-semibold">IT-Support (Intern)</li>
-        <li>วิทยาลัยเทคนิคสัตหีบ</li>
-        <li>ระยะเวลา 07/2563 - 10/2563</li>
+        <li>วิทยาลัยเทคนิคสัตหีบ | 07/2563 - 10/2563</li>
+
         <li className="text-md">
           หน้าที่ :{" "}
           <span>
@@ -59,8 +61,7 @@ const TAB_DATA = [
           </span>
         </li>
         <li className="mt-4 text-lg font-semibold">Developer(Intern)</li>
-        <li>บริษัท บริษัท คอนซัลติ้ง จำกัด</li>
-        <li>ระยะเวลา 07/2567 - 10/2568</li>
+        <li>บริษัท บริษัท คอนซัลติ้ง จำกัด | 07/2567 - 10/2568</li>
         <li className="text-md">
           หน้าที่ :{" "}
           <span>
