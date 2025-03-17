@@ -1,9 +1,19 @@
 "use client";
 import { motion } from "framer-motion";
+import { Download } from "lucide-react"; // Import Download icon from Lucide
 import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
 
 const HeroSection = () => {
+  const handleContactClick = () => {
+    // Find the contact section element
+    const contactSection = document.querySelector("#contact");
+    // Scroll to the contact section if it exists
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="py-10">
       <div className="grid grid-cols-1 sm:grid-cols-12">
@@ -56,12 +66,15 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <button className="px-4 sm:px-6 py-2 sm:py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-r  from-emerald-400 to-cyan-400 hover:scale-110  transition-all hover:bg-slate-200 text-white">
+            <button
+              onClick={handleContactClick}
+              className="px-4 sm:px-6 py-2 sm:py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-r from-emerald-400 to-cyan-400 hover:scale-110 transition-all hover:bg-slate-200 text-white"
+            >
               Hire Me
             </button>
             <button className="px-1 py-1 w-full sm:w-fit rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400 hover:bg-slate-800 text-white mt-3">
-              <span className="block bg-[#121212] hover:bg-slate-800     rounded-full px-3 sm:px-5 py-1 sm:py-2">
-                Download CV
+              <span className=" bg-[#121212] hover:bg-slate-800 rounded-full px-3 sm:px-5 py-1 sm:py-2 flex items-center justify-center gap-2">
+                <Download size={14} /> Download CV
               </span>
             </button>
           </motion.div>
