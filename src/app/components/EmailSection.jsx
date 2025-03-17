@@ -1,5 +1,5 @@
 "use client";
-import { Facebook, Github, Linkedin, Send } from "lucide-react";
+import { Facebook, Github, Linkedin, Mail, Phone, Send } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -52,12 +52,20 @@ const EmailSection = () => {
       <div className="bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full h-80 w-80 z-0 blur-lg absolute top-3/4 -left-4 transform -translate-x-1/2 -translate-1/2"></div>
 
       <div className="z-10">
-        <h5 className="text-white text-xl font-bold my-2">Let's Connect!</h5>
-        <p className="text-[#ADB7BE] mb-4 max-w-md">
-          ผมกำลังมองหาโอกาสใหม่ ๆ แบบฟอร์มของผมเปิดอยู่เสมอ! ไม่ว่าคุณจะมีคำถาม
+        <h5 className="text-white text-xl font-bold my-2 ">Let's Connect!</h5>
+        <p className="text-[#ADB7BE] mb-2 max-w-md">
+          ผมกำลังมองหาโอกาสใหม่ๆ แบบฟอร์มของผมเปิดอยู่เสมอ! ไม่ว่าคุณจะมีคำถาม
           หรือแค่อยากทักทาย ผมจะพยายามตอบกลับให้เร็วที่สุด!
         </p>
-        <div className="socials flex flex-row gap-2">
+        <div className="flex items-center gap-2 text-white ">
+          <Phone size={18} /> :<span>🇹🇭(+66)94-371-8956</span>
+        </div>
+        <div className="flex items-center mb-4 gap-2 text-white ">
+          <Mail size={18} /> :<span>khimk635@gmail.com</span>
+        </div>
+        <p className="text-white font-semibold">Social Links</p>
+
+        <div className="socials flex flex-row gap-2 mt-2">
           <Link
             href="https://www.facebook.com/surapat.wongsri.1"
             target="_blank"

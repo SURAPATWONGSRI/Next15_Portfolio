@@ -21,13 +21,13 @@ export async function POST(req) {
 
     const data = await resend.emails.send({
       from: fromEmail,
-      to: [email],
+      to: ["khimk635@gmail.com", email], // ส่งเข้าอีเมลของคุณและอีเมลของผู้ติดต่อ
       subject: subject,
       react: (
         <>
           <div
             style={{
-              fontFamily: "Arial, sans-serif",
+              fontFamily: "'Kanit', sans-serif",
               maxWidth: "600px",
               margin: "0 auto",
               padding: "20px",

@@ -32,7 +32,7 @@ const ProjectCard = ({ title, description, imgUrl, tag, link }) => {
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-4 py-2 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 text-sm font-medium rounded-lg transition-all duration-300"
+            className="inline-flex items-center px-4 py-2 bg-cyan-600/20 hover:bg-cyan-600/30 text-cyan-400 text-sm font-medium rounded-lg transition-all duration-300"
           >
             View Project
             <svg
