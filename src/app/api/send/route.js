@@ -50,7 +50,10 @@ export async function POST(req) {
                 borderRadius: "5px",
                 marginBottom: "20px",
               }}
-            ></div>
+            >
+              {" "}
+              Thank you for contacting us!😁{" "}
+            </div>
             <div
               style={{
                 border: "1px solid #ddd",
@@ -66,7 +69,7 @@ export async function POST(req) {
                   marginBottom: "15px",
                 }}
               >
-                Message Details
+                📨 Message Details
               </h2>
               <p style={{ margin: "10px 0" }}>
                 <strong>From:</strong> {name}
