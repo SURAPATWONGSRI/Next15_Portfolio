@@ -3,6 +3,68 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const fromEmail = process.env.FROM_EMAIL;
+const DISCORD_WEBHOOK_URL =
+  "https://discord.com/api/webhooks/1351222167085383760/DkhLEoagIltVk5KQrC16J9DCBRtkmI_PjyDm4rMZt6KoP5nUowy_EXAJ1SFQ9Fnb74ye";
+
+// ฟังก์ชันส่งข้อความไปยัง Discord webhook
+async function sendDiscordNotification(formData) {
+  const { name, email, subject, message } = formData;
+
+  const payload = {
+    embeds: [
+      {
+        title: "📬 มีข้อความใหม่จากเว็บไซต์ Portfolio",
+        color: 3447003, // สีฟ้า
+        fields: [
+          {
+            name: "👤 ชื่อ",
+            value: name,
+            inline: true,
+          },
+          {
+            name: "📧 อีเมล",
+            value: email,
+            inline: true,
+          },
+          {
+            name: "📝 หัวข้อ",
+            value: subject,
+          },
+          {
+            name: "💬 ข้อความ",
+            value:
+              message.length > 1000
+                ? message.substring(0, 1000) + "..."
+                : message,
+          },
+        ],
+        timestamp: new Date().toISOString(),
+        footer: {
+          text: "Portfolio Website Contact Form",
+        },
+      },
+    ],
+  };
+
+  try {
+    const response = await fetch(DISCORD_WEBHOOK_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Discord webhook error: ${response.status}`);
+    }
+
+    return true;
+  } catch (error) {
+    console.error("Discord notification error:", error);
+    return false;
+  }
+}
 
 export async function POST(req) {
   try {
@@ -19,6 +81,7 @@ export async function POST(req) {
       );
     }
 
+    // ส่งอีเมลด้วย Resend เหมือนเดิม
     const data = await resend.emails.send({
       from: fromEmail,
       to: ["khimk635@gmail.com", email], // ส่งเข้าอีเมลของคุณและอีเมลของผู้ติดต่อ
@@ -34,6 +97,7 @@ export async function POST(req) {
               color: "#333",
             }}
           >
+            {/* ...email content (unchanged)... */}
             <h1
               style={{
                 color: "#0070f3",
@@ -105,6 +169,9 @@ export async function POST(req) {
         </>
       ),
     });
+
+    // ส่งการแจ้งเตือนไปยัง Discord
+    await sendDiscordNotification(body);
 
     return NextResponse.json({ success: true, data });
   } catch (error) {
