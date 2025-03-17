@@ -1,3 +1,5 @@
+"use client"; // Add this at the top to use client-side features
+import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
 
 const projectsData = [
@@ -38,21 +40,49 @@ const projectsData = [
 const MyProjectSection = () => {
   return (
     <>
-      <h2 className="text-center text-white font-semibold text-4xl">
+      <motion.h2
+        className="text-center text-white font-semibold text-4xl"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         My Projects
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8">
+      </motion.h2>
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={{
+          visible: {
+            transition: {
+              staggerChildren: 0.2,
+            },
+          },
+          hidden: {},
+        }}
+      >
         {projectsData.map((project) => (
-          <ProjectCard
+          <motion.div
             key={project.id}
-            title={project.title}
-            description={project.description}
-            imgUrl={project.image}
-            tag={project.tag}
-            link={project.link}
-          />
+            className="flex h-full"
+            variants={{
+              visible: { opacity: 1, y: 0 },
+              hidden: { opacity: 0, y: 50 },
+            }}
+            transition={{ duration: 0.5 }}
+          >
+            <ProjectCard
+              title={project.title}
+              description={project.description}
+              imgUrl={project.image}
+              tag={project.tag}
+              link={project.link}
+              className="w-full h-full flex flex-col"
+            />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </>
   );
 };

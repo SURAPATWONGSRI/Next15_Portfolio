@@ -66,14 +66,14 @@ const EmailSection = () => {
             <Facebook size={24} />
           </Link>
           <Link
-            href="https://github.com/SURAPATWONGSRI"
+            href="https://www.github.com/SURAPATWONGSRI"
             target="_blank"
             className="text-white hover:text-gray-400"
           >
             <Github size={24} />
           </Link>
           <Link
-            href="www.linkedin.com/in/surapat-wongsri-181a91269"
+            href="https://www.linkedin.com/in/surapat-wongsri-181a91269"
             target="_blank"
             className="text-white hover:text-gray-400"
           >
