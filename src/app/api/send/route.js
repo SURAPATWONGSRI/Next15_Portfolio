@@ -25,12 +25,80 @@ export async function POST(req) {
       subject: subject,
       react: (
         <>
-          <h1>{subject}</h1>
-          <p>Thank You For contacting us!</p>
-          <p>New Message submitted:</p>
-          <p>From: {name}</p>
-          <p>Email: {email}</p>
-          <p>Message: {message}</p>
+          <div
+            style={{
+              fontFamily: "Arial, sans-serif",
+              maxWidth: "600px",
+              margin: "0 auto",
+              padding: "20px",
+              color: "#333",
+            }}
+          >
+            <h1
+              style={{
+                color: "#0070f3",
+                textAlign: "center",
+                marginBottom: "20px",
+              }}
+            >
+              {subject}
+            </h1>
+            <div
+              style={{
+                backgroundColor: "#f4f4f4",
+                padding: "15px",
+                borderRadius: "5px",
+                marginBottom: "20px",
+              }}
+            ></div>
+            <div
+              style={{
+                border: "1px solid #ddd",
+                padding: "15px",
+                borderRadius: "5px",
+              }}
+            >
+              <h2
+                style={{
+                  fontSize: "18px",
+                  borderBottom: "1px solid #eee",
+                  paddingBottom: "10px",
+                  marginBottom: "15px",
+                }}
+              >
+                Message Details
+              </h2>
+              <p style={{ margin: "10px 0" }}>
+                <strong>From:</strong> {name}
+              </p>
+              <p style={{ margin: "10px 0" }}>
+                <strong>Email:</strong> {email}
+              </p>
+              <p style={{ margin: "10px 0" }}>
+                <strong>Message:</strong>
+              </p>
+              <div
+                style={{
+                  backgroundColor: "#f9f9f9",
+                  padding: "10px",
+                  borderRadius: "3px",
+                  marginTop: "5px",
+                }}
+              >
+                {message}
+              </div>
+            </div>
+            <div
+              style={{
+                textAlign: "center",
+                marginTop: "20px",
+                fontSize: "12px",
+                color: "#666",
+              }}
+            >
+              <p>© {new Date().getFullYear()} Surapat Wongsri.</p>
+            </div>
+          </div>
         </>
       ),
     });
