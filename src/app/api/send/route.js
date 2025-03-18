@@ -2,8 +2,10 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const fromEmail = process.env.FROM_EMAIL;
+const fromEmail = process.env.FROM_EMAIL || "onboarding@resend.dev";
+// ควรย้าย URL นี้ไปไว้ใน .env.local สำหรับความปลอดภัย
 const DISCORD_WEBHOOK_URL =
+  process.env.DISCORD_WEBHOOK_URL ||
   "https://discord.com/api/webhooks/1351222167085383760/DkhLEoagIltVk5KQrC16J9DCBRtkmI_PjyDm4rMZt6KoP5nUowy_EXAJ1SFQ9Fnb74ye";
 
 // ฟังก์ชันส่งข้อความไปยัง Discord webhook
@@ -18,24 +20,24 @@ async function sendDiscordNotification(formData) {
         fields: [
           {
             name: "👤 ชื่อ",
-            value: name,
+            value: name || "ไม่ระบุ",
             inline: true,
           },
           {
             name: "📧 อีเมล",
-            value: email,
+            value: email || "ไม่ระบุ",
             inline: true,
           },
           {
             name: "📝 หัวข้อ",
-            value: subject,
+            value: subject || "ไม่ระบุ",
           },
           {
             name: "💬 ข้อความ",
             value:
-              message.length > 1000
+              message && message.length > 1000
                 ? message.substring(0, 1000) + "..."
-                : message,
+                : message || "ไม่ระบุ",
           },
         ],
         timestamp: new Date().toISOString(),
@@ -81,6 +83,10 @@ export async function POST(req) {
       );
     }
 
+    // ส่งการแจ้งเตือนไปยัง Discord ก่อน เพื่อให้มีการแจ้งเตือนทันที
+    // แม้ว่าการส่งอีเมลจะล้มเหลว
+    await sendDiscordNotification(body);
+
     // ส่งอีเมลด้วย Resend เหมือนเดิม
     const data = await resend.emails.send({
       from: fromEmail,
@@ -97,7 +103,6 @@ export async function POST(req) {
               color: "#333",
             }}
           >
-            {/* ...email content (unchanged)... */}
             <h1
               style={{
                 color: "#0070f3",
@@ -170,10 +175,22 @@ export async function POST(req) {
       ),
     });
 
-    // ส่งการแจ้งเตือนไปยัง Discord
-    await sendDiscordNotification(body);
+    // ตรวจสอบสถานะการส่งอีเมล
+    if (data.error) {
+      console.error("Email sending error:", data.error);
 
-    return NextResponse.json({ success: true, data });
+      // กรณีที่เป็น delayed delivery ให้ถือว่าสำเร็จ
+      if (data.error.code === "email.delivery_delayed") {
+        return NextResponse.json({
+          success: true,
+          message: "Your message has been received and will be sent shortly",
+        });
+      }
+
+      throw new Error(data.error.message || "Failed to send email");
+    }
+
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Error processing email request:", error);
     return NextResponse.json(
