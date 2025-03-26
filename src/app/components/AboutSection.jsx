@@ -62,7 +62,7 @@ const TAB_DATA = [
           </span>
         </li>
         <li className="mt-4 text-lg font-semibold">Developer(Intern)</li>
-        <li>บริษัท บริษัท คอนซัลติ้ง จำกัด | 07/2567 - 10/2568</li>
+        <li>บริษัท บีแทสก์ คอนซัลติ้ง จำกัด | 07/2567 - 10/2568</li>
         <li className="text-md">
           หน้าที่ :{" "}
           <span>
