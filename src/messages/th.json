@@ -1,0 +1,36 @@
+{
+  "about": "เกี่ยวกับ",
+  "projects": "โปรเจกต์",
+  "contact": "ติดต่อ",
+  "language": "ภาษา",
+  "hero": {
+    "greeting": "สวัสดีครับ ผม",
+    "title": "สุรพัฒน์ วงศ์ศรี",
+    "subtitle": "นักพัฒนา Full-Stack",
+    "subtitle2": "วิศวกรซอฟต์แวร์",
+    "location": "กรุงเทพมหานคร, ประเทศไทย",
+    "hireMe": "จ้างผม",
+    "downloadCV": "ดาวน์โหลดประวัติย่อ"
+  },
+  "projectSection": {
+    "title": "โปรเจกต์ของฉัน",
+    "projects": {
+      "movieReview": {
+        "title": "Review Movies Web-App",
+        "description": "เว็บไซต์รีวิวภาพยนต์ เขียนด้วย PHP+MySQL"
+      },
+      "ecommerce": {
+        "title": "E-commerce Web-App",
+        "description": "เว็บไซต์ร้านค้าออนไลน์ E-Commerce"
+      },
+      "weather": {
+        "title": "The Local Weather Web App",
+        "description": "เว็บไซต์ดูอุณหภูมิสภาพอากาศโดยการ fetch API (openweatherAPI, mapboxAPI)"
+      },
+      "netZero": {
+        "title": "Net-Zero เว็บแอพการจัดการพลังงานสุทธิเป็นศูนย์",
+        "description": "เว็บไซต์ที่ช่วยให้สามารถจัดการการใช้พลังงาน เพื่อให้การปล่อยก๊าซเรือนกระจกเป็นศูนย์และใช้พลังงานหมุนเวียนอย่างมีประสิทธิภาพ"
+      }
+    }
+  }
+}

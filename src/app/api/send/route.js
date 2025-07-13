@@ -79,7 +79,7 @@ export async function POST(req) {
     if (!email || !subject || !message) {
       return NextResponse.json(
         { error: "Missing required fields" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -195,7 +195,7 @@ export async function POST(req) {
     console.error("Error processing email request:", error);
     return NextResponse.json(
       { error: error.message || "Failed to send email" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -1,18 +1,25 @@
+import { ThemeProvider } from "@/components/theme-provider";
 import { Kanit } from "next/font/google";
-import "./globals.css";
+
+const locales = ["en", "th"];
 
 const kanit = Kanit({
-  subsets: ['latin', 'thai'],  // Added Thai subset
-  weight: ['300', '400', '500', '600', '700'],
-  display: 'swap',
-  variable: '--font-kanit',
+  subsets: ["latin", "thai"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-kanit",
 });
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, params }) {
   return (
-    <html lang="en">
-      <body className={`${kanit.className} ${kanit.variable} antialiased`}>
-        {children}
+    <html lang={params?.locale} suppressHydrationWarning>
+      <body
+        className={`${kanit.className} ${kanit.variable} antialiased`}
+        suppressHydrationWarning={true}
+      >
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

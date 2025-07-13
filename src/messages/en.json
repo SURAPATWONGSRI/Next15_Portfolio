@@ -1,0 +1,36 @@
+{
+  "about": "About",
+  "projects": "Projects",
+  "contact": "Contact",
+  "language": "Language",
+  "hero": {
+    "greeting": "Hello, I'm",
+    "title": "Surapat Wongsri",
+    "subtitle": "Full-Stack Developer",
+    "subtitle2": "Software Engineer",
+    "location": "Bangkok, Thailand",
+    "hireMe": "Hire Me",
+    "downloadCV": "Download CV"
+  },
+  "projectSection": {
+    "title": "My Projects",
+    "projects": {
+      "movieReview": {
+        "title": "Review Movies Web-App",
+        "description": "Movie review website written with PHP+MySQL"
+      },
+      "ecommerce": {
+        "title": "E-commerce Web-App",
+        "description": "Online store e-commerce website"
+      },
+      "weather": {
+        "title": "The Local Weather Web App",
+        "description": "Website for viewing temperature and weather conditions by fetching API (openweatherAPI, mapboxAPI)"
+      },
+      "netZero": {
+        "title": "Net-Zero Energy Management Web App",
+        "description": "Website that helps manage energy usage to achieve zero greenhouse gas emissions and efficiently use renewable energy"
+      }
+    }
+  }
+}
